@@ -20,12 +20,12 @@ class Entreprise {
 class Personne {
 
 //Attributs
-	private $numero1;
-	public $nom1;
-	public $prenom1;
-	public $daten1;
-	public $adr1;
-	public $ent1;
+	private $numero;
+	public $nom;
+	public $prenom;
+	public $daten;
+	public $adr;
+	public $ent;
 
 //Méthodes
 	function __construct($numero, $nom, $prenom, $dn, $adr, $ent) {
@@ -36,11 +36,19 @@ class Personne {
 		$this->adr = $adr;
 		$this->ent = $ent;
 	}
-
-	public function __get($num) {
-		return $this->num;
+	public function __getNumero() {
+		return $this->numero;
 	} 
-
+	public function __getNom() {
+		return $this->nom;
+	} 
+	public function __getPrenom() {
+		return $this->prenom;
+	} 
+	public function __getDaten() {
+		return $this->daten;
+	} 
+	
 	public function afficher() {
 		echo "id : ".$this->num."<br/>";
 		echo "Nom : ".$this->nom."<br/>";
