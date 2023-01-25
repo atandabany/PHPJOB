@@ -1,50 +1,38 @@
 <?php
 	session_start();
-	$user = "root";
-	$mdp = "";
+	$user = "etudiant";
+	$mdp = "azerty123";
 	$connextion = False;
 	
-	if(isset($_POST['login'])){
+	if(isset($_POST['username'])){
 		 try{
-			 $pdo = new PDO("mysql:host=localhost;dbname=inventaire",$user,$mdp);
+			 $pdo = new PDO("mysql:host=localhost;dbname=utilisateur",$user,$mdp);
 			 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			 
-			 $req = "Select * from USER";
+			 $req = "Select * from user";
 			 $pdoreq = $pdo->query($req);
 			 $pdoreq->setFetchMode(PDO::FETCH_ASSOC);
 			
 			foreach($pdoreq as $ligne){
-				if($ligne['login'] == $_POST['login'] && $ligne['password'] == $_POST['mdp']){
+				if($ligne['username'] == $_POST['username'] && $ligne['mdp'] == $_POST['mdp']){
 					
 					$_SESSION['id'] = $ligne['id_user'];
-					$_SESSION['nom'] = $ligne['login'];
-					$_SESSION['password'] = $ligne['password'];
+					$_SESSION['nom'] = $ligne['username'];
+					$_SESSION['password'] = $ligne['mdp'];
 					$connextion = True;
 					
-					header('Location:../html/accueil.php');
+					header('Location:../html/presentation.php');
 				}
-				
 			}
 			if($connextion == False){
-				header('Location:../html/Connexion.html');
+				header('Location:../html/connexion.html');
 			}
-				
-			
-		}
-				
+		}	
 		catch(PDOException $e){
 			echo "Error :".$e->getMessage();
-			die();
-				
+			die();		
 		}
-			
-		
 	}
 	else{
-		header('Location:../html/Connexion.html');
-		
+		header('Location:../html/connexion.html');
 	}
-
-
-
 ?>
