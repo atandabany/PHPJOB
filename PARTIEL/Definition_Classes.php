@@ -15,12 +15,12 @@ class Entreprise {
 
 class Personne {
 	//Attributs
-	protected $id;
-	protected $nom;
-	protected $prenom;
-	protected $mail;
-	protected $tel;
-	protected $salaire;
+	private function afficher() {
+		$this->num . '<br/>';
+		$this->nom . '<br/>';
+		$this->prenom . '<br/>';
+		$this->entreprise->nom . '<br/>';
+	}
 
 	//Constructeur
 	function __construct($id, $nom, $prenom, $mail, $tel, $salaire){
